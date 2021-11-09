@@ -19,7 +19,7 @@ function tasksHandler(req, res) {
 }
 
 app.get("/users", usersHandler);
-app.get("/users", tasksHandler);
+app.get("/tasks", tasksHandler);
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
