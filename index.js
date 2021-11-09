@@ -12,7 +12,14 @@ function usersHandler(req, res) {
   );
 }
 
+function tasksHandler(req, res) {
+  res.send(
+    "Rota ativada com GET e recurso Tarefas: valores de tarefas devem ser retornados."
+  );
+}
+
 app.get("/users", usersHandler);
+app.get("/users", tasksHandler);
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
