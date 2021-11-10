@@ -7,7 +7,7 @@ const user = new UsersController();
 const task = new TasksController();
 
 const app = express();
-const port = 3000;
+const { APP_PORT } = require("./utils/appConfig");
 
 app.get("/", (req, res) => {
   res.send("ToDo APP API");
@@ -16,6 +16,6 @@ app.get("/", (req, res) => {
 app.get("/users", user.show);
 app.get("/tasks", task.show);
 
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
+app.listen(APP_PORT, () => {
+  console.log(`Example app listening at http://localhost:${APP_PORT}`);
 });
