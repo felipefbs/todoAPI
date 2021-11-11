@@ -1,3 +1,3 @@
 module.exports = applicationConfiguration = {
-  APP_PORT: 300,
+  APP_PORT: 3000,
 };
