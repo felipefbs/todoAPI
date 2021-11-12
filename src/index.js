@@ -14,6 +14,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/users", user.show);
+app.post("/users", user.save);
 
 app.get("/tasks", task.show);
 
