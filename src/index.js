@@ -17,6 +17,7 @@ app.get("/users", user.show);
 app.post("/users", user.save);
 
 app.get("/tasks", task.show);
+app.post("/tasks", task.save);
 
 app.listen(APP_PORT, () => {
   console.log(`${APP_NAME} listening at http://localhost:${APP_PORT}`);
