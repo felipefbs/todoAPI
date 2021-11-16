@@ -6,8 +6,10 @@ const TaskController = require("./controllers/taskController");
 const app = express();
 const { APP_PORT, APP_NAME } = require("./utils/appConfig");
 
-const user = new UserController();
-const task = new TaskController();
+app.use((req, res, next) => {
+  console.log(req.headers.host, new Date().toLocaleTimeString());
+  next();
+});
 
 app.get("/", (req, res) => {
   res.send("ToDo APP API");
