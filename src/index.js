@@ -17,11 +17,11 @@ app.get("/", (req, res) => {
   res.send("ToDo APP API");
 });
 
-app.get("/users", user.show);
-app.post("/users", user.save);
+app.get("/users", UserController.show);
+app.post("/users", UserController.save);
 
-app.get("/tasks", task.show);
-app.post("/tasks", task.save);
+app.get("/tasks", TaskController.show);
+app.post("/tasks", TaskController.save);
 
 app.listen(APP_PORT, () => {
   console.log(`${APP_NAME} listening at http://localhost:${APP_PORT}`);

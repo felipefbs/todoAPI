@@ -7,11 +7,10 @@ class UserController {
 
   save = (req, res) => {
     const body = req.body;
-
     res.send(
       `Rota POST de Usuário ativada: usuário ${body.nome} de email ${body.email} adicionado ao banco de dados`
     );
   };
 }
 
-module.exports = UserController;
+module.exports = new UserController();
