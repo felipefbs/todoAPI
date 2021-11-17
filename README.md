@@ -1,21 +1,13 @@
 # ToDo APP API
 
 ## Entidade User
-Usuário {
-    ID
-    Nome
-    Email
-    DataNascimento
-    Senha
-}
+- name
+- email
+- password
+
 
 ## Entidade Task
-Tarefa {
-    ID
-    Nome
-    DataCriação
-    DataTermino
-    Descrição
-    ID_Usuário
-    Status
-}
+- title
+- description
+- status
+- created_at
