@@ -18,9 +18,11 @@ app.get("/", (req, res) => {
 });
 
 app.get("/users/:title", UserController.show);
+app.get("/users/", UserController.index);
 app.post("/users", UserController.save);
 
 app.get("/tasks/:title", TaskController.show);
+app.get("/tasks/", TaskController.index);
 app.post("/tasks", TaskController.save);
 
 app.listen(APP_PORT, () => {

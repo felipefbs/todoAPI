@@ -16,6 +16,10 @@ class TaskController {
     });
   };
 
+  index = (req, res) => {
+    res.send(this.dbConn);
+  };
+
   save = (req, res) => {
     const { title, description, status } = req.body;
 

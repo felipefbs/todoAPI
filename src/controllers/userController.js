@@ -16,6 +16,10 @@ class UserController {
     });
   };
 
+  index = (req, res) => {
+    res.send(this.dbConn);
+  };
+
   save = (req, res) => {
     const { name, email, password } = req.body;
 
