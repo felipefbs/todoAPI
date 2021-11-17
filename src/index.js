@@ -17,7 +17,7 @@ app.get("/", (req, res) => {
   res.send("ToDo APP API");
 });
 
-app.get("/users", UserController.show);
+app.get("/users/:title", UserController.show);
 app.post("/users", UserController.save);
 
 app.get("/tasks/:title", TaskController.show);
