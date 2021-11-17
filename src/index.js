@@ -20,7 +20,7 @@ app.get("/", (req, res) => {
 app.get("/users", UserController.show);
 app.post("/users", UserController.save);
 
-app.get("/tasks", TaskController.show);
+app.get("/tasks/:title", TaskController.show);
 app.post("/tasks", TaskController.save);
 
 app.listen(APP_PORT, () => {

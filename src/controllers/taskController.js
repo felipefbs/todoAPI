@@ -1,10 +1,19 @@
 const TaskModel = require("../models/taskModel");
+const { tasksDB } = require("../infra/bd");
 
 class TaskController {
+  constructor(dbConn) {
+    this.dbConn = dbConn;
+  }
+
   show = (req, res) => {
-    res.send(
-      "Rota ativada com GET e recurso Tarefas: valores de tarefas devem ser retornados."
-    );
+    const title = req.params.title;
+
+    this.dbConn.forEach((task) => {
+      if (task.title === title) {
+        res.send(task);
+      }
+    });
   };
 
   save = (req, res) => {
@@ -19,4 +28,4 @@ class TaskController {
   };
 }
 
-module.exports = new TaskController();
+module.exports = new TaskController(tasksDB);
