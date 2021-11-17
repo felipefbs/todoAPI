@@ -20,7 +20,7 @@ class TaskController {
     const { title, description, status } = req.body;
 
     const task = new TaskModel(title, description, status);
-    console.log(task);
+    this.dbConn.push(task);
 
     res.send(
       "Rota POST de Tarefas ativada: tarefas adicionado ao banco de dados"
