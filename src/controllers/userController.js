@@ -31,6 +31,19 @@ class UserController {
     );
   };
 
+  update = (req, res) => {
+    const name = req.params.name;
+    const content = req.body;
+
+    for (let i = 0; i < this.dbConn.length; i++) {
+      if ((this.dbConn[i].name = name)) {
+        this.dbConn[i] = content;
+      }
+    }
+
+    res.send(`task: ${name} modificado com sucesso`);
+  };
+
   remove = (req, res) => {
     const name = req.params.name;
 

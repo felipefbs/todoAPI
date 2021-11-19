@@ -31,6 +31,19 @@ class TaskController {
     );
   };
 
+  update = (req, res) => {
+    const title = req.params.title;
+    const content = req.body;
+
+    for (let i = 0; i < this.dbConn.length; i++) {
+      if ((this.dbConn[i].title = title)) {
+        this.dbConn[i] = content;
+      }
+    }
+
+    res.send(`task: ${title} modificado com sucesso`);
+  };
+
   remove = (req, res) => {
     const title = req.params.title;
 
