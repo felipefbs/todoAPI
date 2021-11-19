@@ -30,6 +30,16 @@ class UserController {
       `Rota POST de Usuário ativada: usuário ${body.nome} de email ${body.email} adicionado ao banco de dados`
     );
   };
+
+  remove = (req, res) => {
+    const name = req.params.name;
+
+    this.dbConn = this.dbConn.filter((u) => {
+      return u.name !== name;
+    });
+
+    res.send(`${name} apagado com sucesso`);
+  };
 }
 
 module.exports = new UserController(userDB);

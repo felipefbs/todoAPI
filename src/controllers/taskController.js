@@ -30,6 +30,16 @@ class TaskController {
       "Rota POST de Tarefas ativada: tarefas adicionado ao banco de dados"
     );
   };
+
+  remove = (req, res) => {
+    const title = req.params.title;
+
+    this.dbConn = this.dbConn.filter((t) => {
+      return t.title !== title;
+    });
+
+    res.send(`${title} apagado com sucesso`);
+  };
 }
 
 module.exports = new TaskController(tasksDB);

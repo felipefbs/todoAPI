@@ -20,10 +20,12 @@ app.get("/", (req, res) => {
 app.get("/users/:title", UserController.show);
 app.get("/users/", UserController.index);
 app.post("/users", UserController.save);
+app.delete("/tasks/:title", TaskController.remove);
 
 app.get("/tasks/:title", TaskController.show);
 app.get("/tasks/", TaskController.index);
 app.post("/tasks", TaskController.save);
+app.delete("/tasks/:title", TaskController.remove);
 
 app.listen(APP_PORT, () => {
   console.log(`${APP_NAME} listening at http://localhost:${APP_PORT}`);
