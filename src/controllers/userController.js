@@ -1,5 +1,5 @@
 const UserModel = require("../models/userModel");
-const { userDB } = require("../infra/bd");
+const db = require("../infra/sqlite-db");
 
 class UserController {
   constructor(dbConn) {
@@ -17,7 +17,13 @@ class UserController {
   };
 
   index = (req, res) => {
-    res.send(this.dbConn);
+    this.dbConn.all("SELECT * FROM USUARIOS", (error, results) => {
+      if (error) {
+        res.send("Algo de errado não esta certo!");
+      } else {
+        res.send(results);
+      }
+    });
   };
 
   save = (req, res) => {
@@ -55,4 +61,4 @@ class UserController {
   };
 }
 
-module.exports = new UserController(userDB);
+module.exports = new UserController(db);

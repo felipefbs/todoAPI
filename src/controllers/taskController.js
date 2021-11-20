@@ -1,5 +1,5 @@
 const TaskModel = require("../models/taskModel");
-const { tasksDB } = require("../infra/bd");
+const db = require("../infra/sqlite-db");
 
 class TaskController {
   constructor(dbConn) {
@@ -17,7 +17,13 @@ class TaskController {
   };
 
   index = (req, res) => {
-    res.send(this.dbConn);
+    this.dbConn.all("SELECT * FROM TAREFAS", (error, results) => {
+      if (error) {
+        res.send("Algo de errado não esta certo!");
+      } else {
+        res.send(results);
+      }
+    });
   };
 
   save = (req, res) => {
@@ -55,4 +61,4 @@ class TaskController {
   };
 }
 
-module.exports = new TaskController(tasksDB);
+module.exports = new TaskController(db);
