@@ -1,6 +1,8 @@
 const UserModel = require("../models/userModel");
 const db = require("../infra/sqlite-db");
 
+const { USERS_TABLE: TABLE } = require("../utils/appConfig");
+
 class UserController {
   constructor(dbConn) {
     this.dbConn = dbConn;
@@ -17,7 +19,7 @@ class UserController {
   };
 
   index = (req, res) => {
-    this.dbConn.all("SELECT * FROM USUARIOS", (error, results) => {
+    this.dbConn.all(`SELECT * FROM ${TABLE}`, (error, results) => {
       if (error) {
         res.send("Algo de errado não esta certo!");
       } else {
