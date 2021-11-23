@@ -17,17 +17,17 @@ app.get("/", (req, res) => {
   res.send("ToDo APP API");
 });
 
-app.get("/users/:title", UserController.show);
+app.get("/users/:id", UserController.show);
 app.get("/users/", UserController.index);
 app.post("/users", UserController.save);
-app.put("/tasks/:title", TaskController.update);
-app.delete("/tasks/:title", TaskController.remove);
+app.put("/users/:id", UserController.update);
+app.delete("/users/:id", UserController.remove);
 
-app.get("/tasks/:title", TaskController.show);
+app.get("/tasks/:id", TaskController.show);
 app.get("/tasks/", TaskController.index);
 app.post("/tasks", TaskController.save);
-app.put("/tasks/:title", TaskController.update);
-app.delete("/tasks/:title", TaskController.remove);
+app.put("/tasks/:id", TaskController.update);
+app.delete("/tasks/:id", TaskController.remove);
 
 app.listen(APP_PORT, () => {
   console.log(`${APP_NAME} listening at http://localhost:${APP_PORT}`);
