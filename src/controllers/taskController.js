@@ -1,7 +1,5 @@
 const TaskModel = require("../models/taskModel");
-const db = require("../infra/sqlite-db");
-
-const { TASKS_TABLE: TABLE } = require("../utils/appConfig");
+const dao = require("../dao/taskDAO");
 
 class TaskController {
   constructor(dbConn) {
@@ -9,58 +7,70 @@ class TaskController {
   }
 
   show = (req, res) => {
-    const title = req.params.title;
+    const id = req.params.id;
 
-    this.dbConn.forEach((task) => {
-      if (task.title === title) {
+    this.dbConn
+      .getTaskByID(id)
+      .then((task) => {
         res.send(task);
-      }
-    });
+      })
+      .catch((error) => {
+        res.send(error);
+      });
   };
 
   index = (req, res) => {
-    this.dbConn.all(`SELECT * FROM ${TABLE}`, (error, results) => {
-      if (error) {
-        res.send("Algo de errado não esta certo!");
-      } else {
-        res.send(results);
-      }
-    });
+    this.dbConn
+      .getAllTasks()
+      .then((task) => {
+        res.send(task);
+      })
+      .catch((error) => {
+        res.send(error);
+      });
   };
 
   save = (req, res) => {
-    const { title, description, status } = req.body;
+    const { title, description, status, user_id } = req.body;
 
-    const task = new TaskModel(title, description, status);
-    this.dbConn.push(task);
+    const task = new TaskModel(title, description, status, user_id);
 
-    res.send(
-      "Rota POST de Tarefas ativada: tarefas adicionado ao banco de dados"
-    );
+    this.dbConn
+      .saveTask(task)
+      .then((task) => {
+        res.send(task);
+      })
+      .catch((error) => {
+        res.send(error);
+      });
   };
 
   update = (req, res) => {
-    const title = req.params.title;
+    const id = req.params.id;
     const content = req.body;
 
-    for (let i = 0; i < this.dbConn.length; i++) {
-      if ((this.dbConn[i].title = title)) {
-        this.dbConn[i] = content;
-      }
-    }
-
-    res.send(`task: ${title} modificado com sucesso`);
+    this.dbConn
+      .updateTask(id, content)
+      .then((result) => {
+        res.send(result);
+      })
+      .catch((error) => {
+        res.send(error);
+      });
   };
 
   remove = (req, res) => {
-    const title = req.params.title;
+    const id = req.params.id;
 
-    this.dbConn = this.dbConn.filter((t) => {
-      return t.title !== title;
-    });
-
-    res.send(`${title} apagado com sucesso`);
+    this.dbConn
+      .deleteTask(id)
+      .then((result) => {
+        res.send(result);
+      })
+      .catch((error) => {
+        res.send(error);
+      });
   };
 }
 
-module.exports = new TaskController(db);
+module.exports = new TaskController(dao);
