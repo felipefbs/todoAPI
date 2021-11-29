@@ -1,9 +1,11 @@
 const express = require("express");
 const router = express.Router();
+const cors = require("cors");
 
 const UserRouter = require("./userRouter");
 const TaskRouter = require("./taskRouter");
 
+router.use(cors());
 router.use((req, res, next) => {
   console.log(req.headers.host, new Date().toLocaleTimeString());
   next();
