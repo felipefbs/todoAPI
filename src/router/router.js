@@ -11,10 +11,6 @@ router.use((req, res, next) => {
 
 router.use(express.json());
 
-router.get("/", (req, res) => {
-  res.send("hello world");
-});
-
 router.use("/users", UserRouter);
 router.use("/tasks", TaskRouter);
 
