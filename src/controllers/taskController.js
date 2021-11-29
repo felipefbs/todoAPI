@@ -1,5 +1,5 @@
 const TaskModel = require("../models/taskModel");
-const dao = require("../dao/taskDAO");
+const dao = require("../dao/memoryTaskDAO");
 
 class TaskController {
   constructor(dbConn) {
