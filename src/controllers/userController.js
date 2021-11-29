@@ -1,5 +1,5 @@
 const UserModel = require("../models/userModel");
-const dao = require("../dao/userDAO");
+const dao = require("../dao/memoryUserDAO");
 
 class UserController {
   constructor(dbConn) {
