@@ -13,6 +13,10 @@ router.use((req, res, next) => {
 
 router.use(express.json());
 
+router.get("/", (req, res) => {
+  res.json({ message: "Welcome to ToDo app API" });
+});
+
 router.use("/users", UserRouter);
 router.use("/tasks", TaskRouter);
 
